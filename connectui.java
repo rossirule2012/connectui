@@ -13,14 +13,14 @@ public class connectui extends JFrame
 	JPanel pan = new JPanel();
 	BorderLayout br = new BorderLayout();
 	FlowLayout fl = new FlowLayout();
-	String[] options = {"internet.wind","internet.tim"};
+	String[] options = {"internet.wind","internet.tim"}; //here you can add apns EG: {"APN","APN2",...,"APN3"}
 	JList apn = new JList(options);
 	SimpleRunner r = new SimpleRunner();
 	Thread statuses = new Thread(r);
 	
 	public connectui()
 	{
-		super("3Gconnect");
+		super("connectUI");
 		pan.setLayout(fl);
 		pan.add(con);
 		pan.add(dis);
@@ -55,13 +55,13 @@ public class connectui extends JFrame
 	{
 		Process con;
 		
-		stmnt ="sakis3gz connect APN="+apn.getSelectedValue();
+		stmnt ="sakis3gz connect APN="+apn.getSelectedValue(); // that's the command that connect to the internet
 		System.out.print(stmnt);
 		try{con = Runtime.getRuntime().exec(stmnt); 
 		status.setText("Connecting");
 		runn=true;
 		}
-		catch(Exception err){status.setText("Errore--Disconnesso");}
+		catch(Exception err){status.setText("Error-Disconnected");}
 		runn=false;
 		
 		
@@ -72,7 +72,7 @@ public class connectui extends JFrame
 		Process dis;
 		stmnt="sakis3gz disconnect";
 		try{dis = Runtime.getRuntime().exec(stmnt); status.setText("Disconnetting"); runn=true;}
-		catch(Exception err){status.setText("Errore--Connesso");}
+		catch(Exception err){status.setText("Error-Connected");}
 		runn=false;
 	}
 	
@@ -83,8 +83,8 @@ public static void main(String[] arg)
 	new connectui();
 	
 }
-class SimpleRunner implements Runnable
-{
+class SimpleRunner implements Runnable //this is a background-thread that run all the time during the execution
+{                                      // thanks to the infinite cycle for(;;)
 	public void run()
 	{
 		
