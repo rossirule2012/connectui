@@ -14,7 +14,7 @@ public class connectui extends JFrame
 	JPanel pan = new JPanel();
 	BorderLayout br = new BorderLayout();
 	FlowLayout fl = new FlowLayout();
-	JList apn =null;
+	JList apn = listalo();
 	ArrayList<String> apn_list = new ArrayList<String>();
 	SimpleRunner r = new SimpleRunner();
 	Thread statuses = new Thread(r);
@@ -29,7 +29,7 @@ public class connectui extends JFrame
 		add(status,br.SOUTH);
 		actions();
 		statuses.start();
-		listalo();
+		add(apn,br.CENTER);
 		pack();
 		show();
 	} 
@@ -55,8 +55,7 @@ public class connectui extends JFrame
 	void connect()
 	{
 		Process con;
-		
-		stmnt ="sakis3gz connect APN="+apn.getSelectedValue(); // that's the command that connect to the internet
+		stmnt ="sakis3gz connect APN="+apn.getSelectedValue().toString(); // that's the command that connect to the internet
 		System.out.print(stmnt);
 		try{con = Runtime.getRuntime().exec(stmnt); 
 		status.setText("Connecting");
@@ -92,11 +91,11 @@ public class connectui extends JFrame
 		finally {reader.close();}
 		return tmp;
 	}
-	void listalo()
+	public JList listalo()
 	{
 		try{apn_list=apns_enum();} catch (IOException errore) {System.out.print("Errore");}
-		JList apn = new JList(apn_list.toArray());
-		add(apn,br.CENTER);
+		JList tempo = new JList(apn_list.toArray());
+		return tempo;
 	}
 public static void main(String[] arg)
 {
