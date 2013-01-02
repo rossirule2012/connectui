@@ -18,18 +18,25 @@ public class connectui extends JFrame
 	ArrayList<String> apn_list = new ArrayList<String>();
 	SimpleRunner r = new SimpleRunner();
 	Thread statuses = new Thread(r);
+	JScrollPane scroll = new JScrollPane(apn);
 	
 	public connectui()
 	{
 		super("connectUI");
+		this.setPreferredSize(new Dimension(400,300));
 		pan.setLayout(fl);
 		pan.add(con);
 		pan.add(dis);
+		pan.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+		status.setBorder(BorderFactory.createTitledBorder("Stato"));
+		scroll.setBorder(BorderFactory.createTitledBorder("APNs"));
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
+		scroll.setPreferredSize(new Dimension(350,300));
 		add(pan,br.NORTH);
 		add(status,br.SOUTH);
+		add(scroll,br.CENTER);
 		actions();
 		statuses.start();
-		add(apn,br.CENTER);
 		pack();
 		show();
 	} 

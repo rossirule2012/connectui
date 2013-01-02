@@ -1,8 +1,6 @@
 internet.wind
-f
-f
-f
-f
-f
-f
-f 
+internet.wind.biz
+tre.it
+ibox.tim.it
+mobile.vodafone.it
+internet.postemobile.it
